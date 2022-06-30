@@ -29,6 +29,7 @@ const Navbar = () => {
         <a href="/inventory" className='mx-6'>Manage Inventories</a> 
         <a href="/inventory" className='mx-6'>Add Cars</a>  
         <a href="/inventory" className='mx-6'>My cars</a>  
+
          </div>
   </div>
   <div class="flex-none">

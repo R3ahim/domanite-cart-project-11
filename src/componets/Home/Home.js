@@ -1,6 +1,7 @@
 import React from 'react';
 import Onlyfor from './OnlyforYou';
 import State from './State';
+import Wpb from './Wpb';
 
 const Home = () => {
     return (
@@ -52,6 +53,7 @@ const Home = () => {
 
            <Onlyfor></Onlyfor>
            <State></State>
+           <Wpb></Wpb>
           
       </div>
     );

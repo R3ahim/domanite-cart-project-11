@@ -22,7 +22,7 @@ const Onlyfor = () => {
               <h3 className='text-[17px] text-slate-600'>supplier Name: <span className='font-bold text-green-500'>{car.supplierName}</span></h3>
               <p>{car.descriptoin}</p>
               <div class="card-actions justify-center">
-                <button class="btn  btn-wide bg-green-600">Shwo now</button>
+                <button class="btn  btn-wide bg-green-600">Shwo now </button>
               </div>
             </div>
           </div>)
