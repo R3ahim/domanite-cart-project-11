@@ -1,7 +1,11 @@
 import React from 'react';
+import Onlyfor from './OnlyforYou';
+import State from './State';
 
 const Home = () => {
     return (
+      <div>
+    
         <div className="relative flex flex-col-reverse px-16 py-16 lg:pt-0 lg:flex-col lg:pb-0">
         <div className="inset-y-0 top-0 right-0 z-0 w-full px-16 mx-auto md:px-0 lg:pr-0 lg:mb-0 lg:mx-0 lg:w-7/12 lg:max-w-full lg:absolute xl:px-0">
           <svg
@@ -43,6 +47,12 @@ const Home = () => {
             </div>
           </div>
         </div>
+      </div>
+    
+
+           <Onlyfor></Onlyfor>
+           <State></State>
+          
       </div>
     );
 };
