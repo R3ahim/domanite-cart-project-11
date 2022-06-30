@@ -1,12 +1,25 @@
 import logo from './logo.svg';
 import './App.css';
 import Navbar from './componets/Navbar/Navbar';
+import Home from './componets/Home/Home';
 
 function App() {
   return (
-    <div className="App">
-      <Navbar></Navbar>
-    <p className='center text-red-500'>hello world</p>
+    <div>
+        <div class="drawer">
+  
+  <div class="drawer-content">
+    
+  <Navbar></Navbar>
+      <Home></Home>
+
+
+
+
+  </div> 
+ 
+</div>
+      
     </div>
   );
 }
