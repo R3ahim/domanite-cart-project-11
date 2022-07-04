@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import "animate.css/animate.min.css";
+import { AnimationOnScroll } from 'react-animation-on-scroll';
 
 const Wpb = () => {
     const [wpbs, setWpbs] = useState([])
@@ -10,9 +12,10 @@ const Wpb = () => {
   },[])
     return (
         <div className='mt-28'>
-            <div className='grid grid-cols-3'>
+            <div className='grid md:grid-cols-3 sm:grid-cols-1'>
                 {
-                    wpbs.map(wpb=><div class="card w-96 bg-base-100 shadow-xl">
+                    wpbs.map(wpb=>  <AnimationOnScroll animateIn="animate__bounceIn">
+                      <div class="card w-96 bg-base-100 shadow-xl">
                     <figure class="px-10 pt-10">
                         <p className='text-[49px]'>
 
@@ -24,7 +27,8 @@ const Wpb = () => {
                       <p>If a dog chews shoes whose shoes does he choose?</p>
                       
                     </div>
-                  </div>)
+                  </div>
+                  </AnimationOnScroll>)
                 }
             </div>
             

@@ -33,7 +33,7 @@ const Navbar = () => {
          </div>
   </div>
   <div class="flex-none">
-   <a className='text-white font-bold mx-5'>Login</a>
+  <Link to={'/login'} className="text-white">Login</Link>
   </div>
 </div>
         </div>

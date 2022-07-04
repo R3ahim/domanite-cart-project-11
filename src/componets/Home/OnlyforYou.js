@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-
+import "animate.css/animate.min.css";
+import { AnimationOnScroll } from 'react-animation-on-scroll';
 const Onlyfor = () => {
     const [cars,setCars] = useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/service')
+        fetch('http://localhost:5000/cars')
         .then(res=>res.json())
         .then(data=>setCars(data))
     },[])
@@ -13,7 +14,9 @@ const Onlyfor = () => {
        
        <div className=' grid md:grid-cols-3 sm: sm:grid-cols-1 gap-2'>
         {
-            cars.map(car=><div class="card card-compact w-96 bg-base-100 shadow-xl mx-auto">
+            cars.map(car=>
+              <AnimationOnScroll animateIn="animate__bounceIn">
+                <div class="card card-compact w-96 bg-base-100 shadow-xl mx-auto">
             <figure><img src={car.img} alt="Shoes" /></figure>
             <div class="card-body">
               <h2 class="card-title">{car.name}</h2>
@@ -22,10 +25,11 @@ const Onlyfor = () => {
               <h3 className='text-[17px] text-slate-600'>supplier Name: <span className='font-bold text-green-500'>{car.supplierName}</span></h3>
               <p>{car.descriptoin}</p>
               <div class="card-actions justify-center">
-                <button class="btn  btn-wide bg-green-600">Shwo now </button>
+                <button class="btn  btn-wide bg-green-600">Buy Now </button>
               </div>
             </div>
-          </div>)
+          </div>
+          </AnimationOnScroll>)
         }
         
 

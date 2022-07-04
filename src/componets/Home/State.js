@@ -1,4 +1,7 @@
 import React from 'react';
+import "animate.css/animate.min.css";
+import { AnimationOnScroll } from 'react-animation-on-scroll';
+
 
 const State = () => {
     return (
@@ -7,6 +10,9 @@ const State = () => {
           More Than 10 Years We Provide Cars <br className="md:block hidden" />
           around the world
         </h1>
+       <AnimationOnScroll animateIn="animate__fadeInLeftBig">
+ 
+
         <div className='relative mt-9 items-center justify-center sm:flex'>
         <img src="https://i.ibb.co/WD30X0v/map.png"
          alt="world map img"
@@ -27,11 +33,12 @@ const State = () => {
           <p className='text-3xl font-semibold  '>777+</p>
           <p>Our Custommer</p>
         </div>
-        <div className='shadow-lg xl:p-4 md:w-48  sm:w-full sm:absolute relative  left-96 top-4 bg-stone-700 rounded text-white'>
+        <div className='shadow-lg xl:p-4 md:w-48 sm:w-full sm:absolute relative  left-96 top-4 bg-stone-700 rounded text-white'>
           <p className='text-3xl font-semibold '>330+</p>
           <p>Recently Car Listed</p>
         </div>
         </div>
+        </AnimationOnScroll>
         </div>
     );
 };
