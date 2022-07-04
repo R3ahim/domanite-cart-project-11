@@ -1,12 +1,13 @@
 import { dividerClasses } from '@mui/material';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import auth from '../../firebase.init';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword ,useSignInWithGoogle} from 'react-firebase-hooks/auth';
 
 
 
 const Register = ()=>{
+    const [emails,setEmails] = useState([])
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [
         createUserWithEmailAndPassword,
@@ -14,11 +15,56 @@ const Register = ()=>{
         loading,
         error,
       ] = useCreateUserWithEmailAndPassword(auth);
+
+      const [signInWithGoogle, user1, loading1, error1] = useSignInWithGoogle(auth);
+
+        if(user1){
+         const name = user1.user.displayName;
+         const email = user1.user.email;
+         const img = user1.user.photoURL;
+         const emailsInformation = {
+            name:name,
+            email:email,
+            img:img
+         }
+         fetch('http://localhost:5000/email',{
+            method:'POST',
+            headers:{'content-type': 'application/json',},
+            body:JSON.stringify(emailsInformation)
+
+         })
+         .then(res=>res.json())
+         .then(data=>alert('your acout is succesfull'))
+        
+        }
+      
+
     
     const onSubmit = data => {
        createUserWithEmailAndPassword(data.email, data.password);
-       console.log(user)
-    }
+       const emailsInformation = {
+        name:data.name,
+        email:data.email,
+        password:data.password,
+
+       }
+       const url  = `http://localhost:5000/email`
+       fetch(url,{
+           method:'POST',
+           headers:{
+              'content-type': 'application/json'
+           },
+           body:JSON.stringify(emailsInformation)
+       })
+       .then(res=>res.json())
+       .then(data=>{
+           console.log(data);
+        
+       })
+
+   }
+     
+    
 
     return(
         <div className='flex h-screen justify-center items-center'>
@@ -35,7 +81,7 @@ const Register = ()=>{
                             type="name"
                             placeholder="Your Email"
                             className="input input-bordered w-full max-w-xs"
-                            {...register("Name", {
+                            {...register("name", {
                                 required: {
                                     value: true,
                                     message: 'Name is Required'
@@ -103,7 +149,7 @@ const Register = ()=>{
               
                 <div className="divider">OR</div>
                 <button
-                  
+                   onClick={()=>{signInWithGoogle()}}
                     className="btn btn-outline"
                 >Continue with Google</button>
             </div>
