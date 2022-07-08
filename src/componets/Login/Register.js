@@ -48,7 +48,7 @@ const Register = ()=>{
         password:data.password,
 
        }
-       const url  = `http://localhost:5000/email`
+       const url  = `htt://localhost:5000/email`
        fetch(url,{
            method:'POST',
            headers:{

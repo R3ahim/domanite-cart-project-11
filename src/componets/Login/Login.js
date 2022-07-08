@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
-import {useSignInWithEmailAndPassword} from 'react-firebase-hooks/auth';
+import {useSignInWithEmailAndPassword,useSignInWithGoogle} from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 
 const Login =()=>{
@@ -17,6 +17,27 @@ const Login =()=>{
     const onSubmit = data => {
       signInWithEmailAndPassword(data.email, data.password)
     }
+    const [signInWithGoogle, user2, loading2, error2] = useSignInWithGoogle(auth);
+    if(user2){
+        const name = user2.user.displayName;
+        const email = user2.user.email;
+        const img = user2.user.photoURL;
+        const emailsInformation = {
+           name:name,
+           email:email,
+           img:img
+        }
+        fetch('http://localhost:5000/email',{
+           method:'POST',
+           headers:{'content-type': 'application/json'},
+           body:JSON.stringify(emailsInformation)
+
+        })
+        .then(res=>res.json())
+        .then(data=>alert('your acout is succesfull'))
+       
+       }
+     
 
     
     return(
@@ -45,10 +66,10 @@ const Login =()=>{
                                     }
                                 })}
                             />
-                            {/* <label className="label">
+                            {<label className="label">
                                 {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
                                 {errors.email?.type === 'pattern' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
-                            </label> */}
+                            </label> }
                         </div>
                         <div className="form-control w-full max-w-xs">
                             <label className="label">
@@ -70,8 +91,8 @@ const Login =()=>{
                                 })}
                             />
                             <label className="label">
-                                {/* {errors.password?.type === 'required' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
-                                {errors.password?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.password.message}</span>} */}
+                             {errors.password?.type === 'required' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
+                                {errors.password?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.password.message}</span>} 
                             </label>
                         </div>
 
@@ -81,7 +102,7 @@ const Login =()=>{
                     <p><small>New to Doctors Portal <Link className='text-primary' to="/register">Create New Account</Link></small></p>
                     <div className="divider">OR</div>
                     <button
-                      
+                        onClick={()=>signInWithGoogle()}
                         className="btn btn-outline"
                     >Continue with Google</button>
                 </div>

@@ -9,6 +9,12 @@ import { Route, Routes } from 'react-router-dom';
 import Login from './componets/Login/Login';
 import RequireAuth from './componets/Login/RequirAuth';
 import Inventory from './componets/Inventorieys/Inventory';
+import InventoryInfo from './componets/Inventorieys/InventoriInfo';
+import Dashboard from './componets/Dashboard/Dashboard';
+import MyOrders from './componets/Dashboard/MyOrders';
+import AddCar from './componets/Dashboard/AddCar';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from './firebase.init';
 
 function App() {
 
@@ -28,10 +34,17 @@ function App() {
     <Route path='/login' element={<Login></Login>}></Route>
     <Route path='/register' element={<Register></Register>}></Route>
     <Route path="/inventory" element={
-        <RequireAuth>
+ 
       <Inventory></Inventory>
-        </RequireAuth>
-      }></Route>  
+     
+      }>
+   </Route>  
+   <Route path='/inventory/:id' element={<InventoryInfo></InventoryInfo>}></Route>
+   <Route path='/dashboard' element={<Dashboard></Dashboard>}>
+    <Route  index element={<MyOrders></MyOrders>}></Route>
+    <Route path='/dashboard/myOrders' element={<MyOrders></MyOrders>}></Route>
+   <Route path='/dashboard/addCar' element={<AddCar></AddCar>}></Route>
+   </Route>
   </Routes>
  
     
