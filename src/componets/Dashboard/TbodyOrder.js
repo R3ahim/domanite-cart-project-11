@@ -1,9 +1,11 @@
 import React from "react";
 import { useQuery } from "react-query";
 import {useState,useEffect} from 'react'
+import { useParams,Link,useNavigate } from "react-router-dom";
 
 
 const TbodyOrder = ({order,refetch})=>{
+    console.log(order)
    const [fullOrders,setFullOrders] = useState({})
    const handleDelete = (id)=>{
     const data = {id:id}
@@ -20,22 +22,31 @@ const TbodyOrder = ({order,refetch})=>{
     .then(res => res.json())
     .then(data => {
         console.log(data);
-        const remaining  =data;
+        const remaining =data;
         setFullOrders(remaining);
+       
+        console.log(remaining)
         refetch()
     })
    }
-   console.log(fullOrders)
-  
+   const navigate = useNavigate()
+   const handleNavigate = (id) =>{
+     navigate(`/payment/${id}`)
+   }
+
+
     return(
       <tr>
             <th></th>
             <td>{order.name}</td>
-            <td>{order.email}</td>
+            <td>{order.price}</td>
             <td>{order.phone}</td>
             <td>{order.address}</td>
-            <td><button className="btn btn-success btn-xs">Pay</button></td>
-            <td><button class="btn btn-error  btn-xs" onClick={()=>handleDelete(order._id)}>delete</button></td>
+            <td>
+            {(order.price && !order.paid) && <button className="btn btn-success btn-xs" onClick={()=>handleNavigate(order._id)}>Pay</button>}
+            {(order.price && order.paid) && <li className="text-succes">paid</li>}
+            </td>
+            <td><button class="btn btn-error  btn-xs" onClick={()=>handleDelete(order._id)}>Cancle</button></td>
          
           </tr>
 

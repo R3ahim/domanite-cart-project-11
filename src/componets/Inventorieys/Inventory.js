@@ -7,12 +7,13 @@ const Inventory=()=>{
 
   const navigate = useNavigate()
   const handleNavigate =id=>{
-    console.log(id)
+ 
          navigate(`/inventory/${id}`)
   }
   return(
     <div>
-        <div className=' grid md:grid-cols-3 sm: sm:grid-cols-1 gap-2'>
+        <div className=' grid md:grid-cols-3 sm: sm:grid-cols-1 gap-2 mt-10'>
+          
        
     {
         cars.map(car=>

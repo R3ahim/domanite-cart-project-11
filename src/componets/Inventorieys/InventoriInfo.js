@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams,Link } from "react-router-dom";
+import { useParams,Link,useNavigate } from "react-router-dom";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from './../../firebase.init';
 
@@ -43,6 +43,10 @@ const handleForm = event =>{
   .then(data=>alert(data))
 
   
+}
+const navigate = useNavigate()
+const handleNavigate = (id) =>{
+  navigate(`/payment/${id}`)
 }
     return(
         <div>
@@ -164,7 +168,7 @@ const handleForm = event =>{
                 value="Order now"
                 className="flex mx-auto text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg cursor-pointer"
               />
-              <button className="btn bg-green-500 border-0">pay now</button>
+              <button className="btn bg-green-500 border-0" onClick={()=>handleNavigate(car._id)} >pay now</button>
             </div>
           </div>
         </div>

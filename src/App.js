@@ -15,6 +15,7 @@ import MyOrders from './componets/Dashboard/MyOrders';
 import AddCar from './componets/Dashboard/AddCar';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from './firebase.init';
+import Payment from './componets/Payment/Payment';
 
 function App() {
 
@@ -40,11 +41,14 @@ function App() {
       }>
    </Route>  
    <Route path='/inventory/:id' element={<InventoryInfo></InventoryInfo>}></Route>
-   <Route path='/dashboard' element={<Dashboard></Dashboard>}>
+
+   <Route path='/dashboard' element={<RequireAuth><Dashboard></Dashboard></RequireAuth>}>
     <Route  index element={<MyOrders></MyOrders>}></Route>
     <Route path='/dashboard/myOrders' element={<MyOrders></MyOrders>}></Route>
    <Route path='/dashboard/addCar' element={<AddCar></AddCar>}></Route>
    </Route>
+
+   <Route path='/payment/:payId' element={<Payment></Payment>}></Route>
   </Routes>
  
     
